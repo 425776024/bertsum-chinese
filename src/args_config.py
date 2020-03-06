@@ -9,33 +9,22 @@
 import argparse
 from others.utils import str2bool
 
-'''
-    训练：
-    python train_LAI.py -mode train -encoder classifier -dropout 0.1 
-    -bert_data_path ../bert_data/LCSTS 
-    -model_path ../models/bert_classifier -lr 2e-3 -visible_gpus 0  
-    -gpu_ranks 0 -world_size 1 -report_every 200 
-    -save_checkpoint_steps 2000 -batch_size 3000 
-    -decay_method noam -train_steps 30000 
-    -accum_count 2 -log_file ../logs/bert_classifier 
-    -use_interval true -warmup_steps 10000 
-    -train_from ../models/bert_classifier/model_step_28000.pt
-    '''
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-encoder", default='classifier', type=str,
-                    choices=['classifier', 'transformer', 'rnn', 'baseline'])
+                    choices=['classifier', 'rnn', 'baseline'])
 
-parser.add_argument("-mode", default='test', type=str, choices=['train', 'validate', 'test'])
+训练还是测试，目前支持 train , test 
+parser.add_argument("-mode", default='test', type=str, choices=['train', 'test'])
 
-# 测试，拷贝部分出来：：bert_data_test
+测试，拷贝部分出来：：bert_data_test
 parser.add_argument("-bert_data_path", default='../bert_data_test/LCSTS')
 parser.add_argument("-model_path", default='../models/bert_classifier')
 parser.add_argument("-result_path", default='../results/result')
 parser.add_argument("-temp_dir", default='../temp')
 
-# Bert config path's json
+必须：预训练的pytorch 的bert-base-chinese模型路径下的配置目录
 parser.add_argument("-bert_config_path", default='/Users/jiang/Documents/bert/bert-base-chinese/config.json')
 
 # 这里的batch size 不一样，服务器上3000+-，本地测试60
@@ -79,13 +68,16 @@ parser.add_argument('-dataset', default='')
 parser.add_argument('-seed', default=666, type=int)
 
 parser.add_argument("-test_all", type=str2bool, nargs='?', const=True, default=False)
+
+在test的时候有用，告诉加载哪个保存的step模型进行预测
 parser.add_argument("-test_from", default='../models/bert_classifier/model_step_2.pt')
 parser.add_argument("-train_from", default='')
 
 parser.add_argument("-report_rouge", type=str2bool, nargs='?', const=True, default=True)
 
 parser.add_argument("-block_trigram", type=str2bool, nargs='?', const=True, default=True)
-# bert pre trained model
+
+必须：预训练的pytorch 的bert-base-chinese模型路径
 mode_path = '/Users/jiang/Documents/bert/bert-base-chinese'
 parser.add_argument("-mode_path", type=str, default=mode_path)
 
