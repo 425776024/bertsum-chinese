@@ -45,7 +45,7 @@ bertsum 抽取式，中文模型
 
 会在`data_loader.Dataloader -> __iter__ ` 进行最终的训练批次数据返回
 
-![image-20200306112529903](/Users/jiang/Library/Application Support/typora-user-images/image-20200306112529903.png)
+![](imgs/image-20200306112529903.png)
 
 
 
