@@ -1,10 +1,13 @@
+# -*- coding: utf-8 -*-
 import math
-
 import torch
 import torch.nn as nn
+from src.models.neural import MultiHeadedAttention, PositionwiseFeedForward
+from src.models.rnn import LayerNormLSTM
 
-from models.neural import MultiHeadedAttention, PositionwiseFeedForward
-from models.rnn import LayerNormLSTM
+'''
+bert输出后，接入分的层
+'''
 
 
 class Classifier(nn.Module):
@@ -13,8 +16,8 @@ class Classifier(nn.Module):
         self.linear1 = nn.Linear(hidden_size, 1)
         self.sigmoid = nn.Sigmoid()
 
-    def forward(self, x, mask_cls):
-        h = self.linear1(x).squeeze(-1)
+    def forward(self, sents_vec, mask_cls):
+        h = self.linear1(sents_vec).squeeze(-1)
         sent_scores = self.sigmoid(h) * mask_cls.float()
         return sent_scores
 

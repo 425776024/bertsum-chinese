@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+        #show p{
+            color:blue;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<h1>金融文本摘要demo</h1>
+<textarea id="input" style="width:50%;height:300px;float:left">我们观察文一科技的日线级别走势可以发现，该股曾经在2019年11月26日出现过MACD金叉走势，但我们同样看到，在MACD出现金叉的前后这段时间内，机构资金对其的进攻意愿总体来看并不强烈。根据AI大数据监测，从最近的7个交易日来看，该股的AI机构活跃度有1个交易日站上强势线，显示近段时间伴随着MACD指标的走好，并没有太多的活跃资金对其产生关注。那这是不是意味着这只个股存在金叉失败的风险呢？也不尽然。从文一科技的走势来看，其金叉完成后的走势整体还处于较为平衡的态势中，但由于机构资金关注度不足，多头没法组织有效进攻。这种弱平衡一般会被资金面的变化所取代，如果我们观察到后续的交易日中AI机构活跃度出现连续站上强势线的格局，那么金叉后股价转强的可能性将会大大增加，但若迟迟得不到机构资金驰援，这个位置就需要防范金叉失败。图片那么，机构活跃度之高低是如何在实际操作中影响到股价波动的，其实是一个量变到质变的过程。机构资金在想要放弃关注一只个股时，往往不会出现“突然死亡”的走势，如同今日的文一科技，其下跌并非由于当天机构活跃度的走弱，而是一段时间资金面持续低迷所造成的。在市场展开反弹的时候，投资者更加需要鉴别场内个股是否有机构资金的青睐，往往不受到机构待见的个股反弹力度就比不上市场平均水平，且一旦指数继续回调，反而会面临着比较大的破位压力。以银禧科技为例，在9月下旬指数反弹时，该股反而连续重挫并创出新低。类似这样的弱势股要如何去甄别呢？根据AI大数据监测，该股从8月上旬的这波连续阳线开始，机构活跃度就再也没有上过大牛线，仅仅寥寥数个交易日站上强势线，大部分时间低于强势线甚至低于生命线，伴随着均线的空头排列，这种机构活跃度的表现也恰如其分的反映了活跃资金对其的不闻不问，在这样的背景下，要想脱离底部并展开反弹是比较困难的，相反，如果资金面不给予支持，产生破位也是情理之中的事。AI机构活跃度是通过大数据和AI算法挖掘，分析得出的个股机构资金在短期操作的活跃度情况！众所周知，股价强势拉升多为游资、私募等活跃机构资金在运作。活跃度持续强势，表示机构运作的力度越大！了解更多，请点击查看>>'''
+</textarea>
+
+<textarea id="show" style="width:40%;height:300px;float:left;margin-left:20px">摘要</textarea>
+<br/>
+<br/>
+<br/>
+<button id="predict" style="width:100px;height:60px;color:red;float:left;clear:left">摘要</button>
+</body>
+<script>
+
+    input_ele=document.getElementById('input');
+    show_ele=document.getElementById('show');
+    predict_bth=document.getElementById('predict');
+
+    predict.onclick=function(){
+        input_text=input_ele.value;
+        //console.log('input_text:'+input_text);
+        show_ele.innerHTML="预测中，测试环境较慢，请稍等3-5s。。。";
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.open('POST', '/api_summary', true);
+        httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        httpRequest.send('doc='+input_text);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var txt = httpRequest.responseText;
+                console.log(txt);
+                show_ele.innerHTML=txt;
+            }
+        };
+    }
+
+
+
+</script>
+</html>

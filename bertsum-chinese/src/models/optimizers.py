@@ -1,4 +1,4 @@
-""" Optimizers class """
+# -*- coding: utf-8 -*-
 import torch
 import torch.optim as optim
 from torch.nn.utils import clip_grad_norm_

@@ -4,8 +4,6 @@ import torch.optim as optim
 from torch.nn.utils import clip_grad_norm_
 
 
-# from onmt.utils import use_gpu
-
 
 def use_gpu(opt):
     """

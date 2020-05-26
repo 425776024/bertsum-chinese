@@ -1,7 +1,0 @@
-numpy==1.17.2
-emoji==0.5.4
-multiprocess==0.70.9
-pytorch_pretrained_bert==0.6.2
-tensorboardX==2.0
-torch==1.4.0
-transformers==2.5.1

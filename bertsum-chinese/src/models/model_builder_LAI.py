@@ -1,21 +1,17 @@
-import os
-import sys
-
-# base_dir = os.path.abspath(os.path.dirname(__file__))
-# sys.path.append(base_dir)
-
+# -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
-# from transformers import BertModel, BertConfig
-from pytorch_pretrained_bert import BertModel, BertConfig
+from transformers import BertModel, BertConfig
 from torch.nn.init import xavier_uniform_
+from src.models.encoder import TransformerInterEncoder, Classifier, RNNEncoder
+from src.models.optimizers import Optimizer
 
-from models.encoder import TransformerInterEncoder, Classifier, RNNEncoder
-from models.optimizers import Optimizer
+'''
+模型创建
+'''
 
 
 def build_optim(args, model, checkpoint):
-    """ Build optimizer """
     saved_optimizer_state_dict = None
 
     if args.train_from != '':
@@ -38,7 +34,7 @@ def build_optim(args, model, checkpoint):
                     if torch.is_tensor(v):
                         state[k] = v.cuda()
 
-        if (optim.method == 'adam') and (len(optim.optimizer.state) < 1):
+        if optim.method == 'adam' and len(optim.optimizer.state) < 1:
             raise RuntimeError(
                 "Error: loaded Adam optimizer from existing model" +
                 " but optimizer state is empty")
@@ -57,8 +53,10 @@ class Bert(nn.Module):
 
     def forward(self, x, segs, mask):
         # sequence_output, pooled_output
-        encoded_layers, _ = self.model(x, attention_mask=mask, token_type_ids=segs)
-        top_vec = encoded_layers[-1]
+        # transformers输出最后一层，pytorch_pretrained_bert输出每层的结果
+        encoded_layers, _ = self.model(input_ids=x, attention_mask=mask, token_type_ids=segs)
+        # top_vec = encoded_layers[-1]
+        top_vec = encoded_layers
         return top_vec
 
 
@@ -67,7 +65,7 @@ class Summarizer(nn.Module):
         super(Summarizer, self).__init__()
         self.args = args
         self.device = device
-        self.bert = Bert(args.mode_path, load_pretrained_bert, bert_config)
+        self.bert = Bert(args.bert_base_chinese, load_pretrained_bert, bert_config)
         if args.encoder == 'classifier':
             self.encoder = Classifier(self.bert.model.config.hidden_size)
         elif args.encoder == 'transformer':
@@ -90,7 +88,6 @@ class Summarizer(nn.Module):
             for p in self.encoder.parameters():
                 if p.dim() > 1:
                     xavier_uniform_(p)
-
         self.to(device)
 
     def load_cp(self, pt):

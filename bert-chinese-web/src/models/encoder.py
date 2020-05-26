@@ -13,8 +13,8 @@ class Classifier(nn.Module):
         self.linear1 = nn.Linear(hidden_size, 1)
         self.sigmoid = nn.Sigmoid()
 
-    def forward(self, x, mask_cls):
-        h = self.linear1(x).squeeze(-1)
+    def forward(self, sents_vec, mask_cls):
+        h = self.linear1(sents_vec).squeeze(-1)
         sent_scores = self.sigmoid(h) * mask_cls.float()
         return sent_scores
 

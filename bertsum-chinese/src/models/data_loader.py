@@ -1,20 +1,16 @@
+# -*- coding: utf-8 -*-
 import gc
 import glob
 import random
-
 import torch
-
-from others.logging import logger
+from src.others.logging import logger
 
 
 class Batch(object):
     def _pad(self, data, pad_id, width=-1):
-        try:
-            if (width == -1):
-                width = max(len(d) for d in data)
-            rtn_data = [d + [pad_id] * (width - len(d)) for d in data]
-        except:
-            print(data)
+        if width == -1:
+            width = max(len(d) for d in data)
+        rtn_data = [d + [pad_id] * (width - len(d)) for d in data]
         return rtn_data
 
     def __init__(self, minibatch=None, device=None, is_test=False):
@@ -49,8 +45,6 @@ class Batch(object):
                 if is_test:
                     src_str = [x[-1] for x in data]
                     setattr(self, 'src_str', src_str)
-                    # tgt_str = [x[-1] for x in data]
-                    # setattr(self, 'tgt_str', tgt_str)
 
     def __len__(self):
         return self.batch_size
@@ -86,7 +80,7 @@ def load_dataset(args, corpus_type, shuffle):
         return dataset
 
     # 以正则表达式匹配的文件路径集
-    pts = sorted(glob.glob(args.bert_data_path + '.' + corpus_type + '.[0-9]*.pt'))
+    pts = sorted(glob.glob(args.bert_data_path + '.' + corpus_type + '.*.pt'))
     if pts:
         if shuffle:
             random.shuffle(pts)
@@ -237,6 +231,5 @@ class DataIterator(object):
                 self._iterations_this_epoch += 1
                 # batch_buffer(self.dataset) > create_batches > minibatch
                 batch = Batch(minibatch, self.device, self.is_test)
-
                 yield batch
             return
