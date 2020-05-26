@@ -15,5 +15,5 @@ vocab_path = os.path.join(bert_base_chinese, 'vocab.txt')
 bert_config_path = os.path.join(bert_base_chinese, 'config.json')
 
 # web
-iphost = '10.113.73.13'
+iphost = '127.0.0.1'
 port = 8080
