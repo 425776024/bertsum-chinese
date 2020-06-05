@@ -34,7 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('-log_file', default='logs/preprocess.log')
 
     parser.add_argument('-n_cpus', default=4, type=int)
-    parser.add_argument('-dataset', default='gonggao', type=str)
+    parser.add_argument('-dataset', default='bert_data/gonggao', type=str)
 
     # bert_base_chinese = '/appcom/apps/chengmengli704/pretrained_model/bert_base/bert-base-chinese/'
     bert_base_chinese = 'bert-base-chinese/'
