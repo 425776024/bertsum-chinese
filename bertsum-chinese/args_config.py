@@ -24,8 +24,8 @@ parser.add_argument("-encoder", default='classifier', type=str,
 # 训练还是测试，目前支持 train , test
 parser.add_argument("-mode", default='train', type=str, choices=['train', 'test'])
 
-# 测试，拷贝部分出来：：bert_data_test
-parser.add_argument("-bert_data_path", default='train_data/gonggao')
+# bert_data_path：训练的pt数据目录
+parser.add_argument("-bert_data_path", default='bert_data/gonggao')
 parser.add_argument("-model_path", default='models/bert_classifier')
 parser.add_argument("-result_path", default='results/result')
 parser.add_argument("-temp_dir", default='temp')
