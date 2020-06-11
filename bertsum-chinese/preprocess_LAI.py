@@ -36,7 +36,6 @@ if __name__ == '__main__':
     parser.add_argument('-n_cpus', default=4, type=int)
     parser.add_argument('-dataset', default='bert_data/gonggao', type=str)
 
-    # bert_base_chinese = '/appcom/apps/chengmengli704/pretrained_model/bert_base/bert-base-chinese/'
     bert_base_chinese = 'bert-base-chinese/'
     parser.add_argument("-bert_base_chinese", type=str, default=bert_base_chinese)
 
