@@ -62,7 +62,8 @@ def doc_split(doc: str):
 
 def format_to_json(doc_sents_arr, idx_arr):
     token_docs = [sent_token_split(sent) for sent in doc_sents_arr]
-    json_item = {'src': token_docs, 'ids': idx_arr}
+    json_item = {'src': token_docs, 'ids':idx_arr}
+
     return json_item
 
 

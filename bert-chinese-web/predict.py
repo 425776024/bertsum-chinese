@@ -8,8 +8,8 @@ import os
 
 
 class Bert_summary_model(object):
-    def __init__(self, device='cpu'):
-        self.device = torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")
+    def __init__(self, device=torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")):
+        self.device = device
         self.data_process = BertData(vocab_path=vocab_path, device=device)
         self.model = self.load_model(load_from)
         self.max_process_len = self.model.bert_config.max_position_embeddings - 2

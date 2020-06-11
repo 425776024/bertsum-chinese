@@ -4,7 +4,9 @@ from src.utils import filter, have_dirty_key, doc_split, save_data_arr_to_json
 
 
 def get_input_data_iter():
+
     data_pd = pd.read_csv(data_path, sep='\t')
+    print(data_pd.shape)
     doc_list = data_pd['doc'].tolist()
     json_list = data_pd['json'].tolist()
 
