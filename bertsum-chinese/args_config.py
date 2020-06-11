@@ -16,7 +16,6 @@ results_path = os.path.join(root, 'results')
 models_path = os.path.join(root, 'models')
 bert_base_chinese = os.path.join(root, 'bert-base-chinese')
 
-# mode_path = '/appcom/apps/chengmengli704/pretrained_model/bert_base/bert-base-chinese'
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-encoder", default='classifier', type=str,
@@ -25,8 +24,8 @@ parser.add_argument("-encoder", default='classifier', type=str,
 # 训练还是测试，目前支持 train , test
 parser.add_argument("-mode", default='train', type=str, choices=['train', 'test'])
 
-# 测试，拷贝部分出来：：bert_data_test
-parser.add_argument("-bert_data_path", default='train_data/gonggao')
+# bert_data_path：训练的pt数据目录
+parser.add_argument("-bert_data_path", default='bert_data/gonggao')
 parser.add_argument("-model_path", default='models/bert_classifier')
 parser.add_argument("-result_path", default='results/result')
 parser.add_argument("-temp_dir", default='temp')
@@ -55,6 +54,7 @@ parser.add_argument("-beta2", default=0.999, type=float)
 parser.add_argument("-decay_method", default='noam', type=str)
 parser.add_argument("-warmup_steps", default=8000, type=int)
 parser.add_argument("-max_grad_norm", default=0, type=float)
+parser.add_argument("-recall_eval", type=str2bool, nargs='?',const=True,default=False)
 
 parser.add_argument("-save_checkpoint_steps", default=1000, type=int)
 
