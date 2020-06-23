@@ -13,7 +13,7 @@ def do_format_to_bert(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-
+    # json数据
     parser.add_argument("-raw_path", default='json_data')
     # 模型输入训练，保存
     parser.add_argument("-save_path", default='train_data')
@@ -34,6 +34,7 @@ if __name__ == '__main__':
     parser.add_argument('-log_file', default='logs/preprocess.log')
 
     parser.add_argument('-n_cpus', default=4, type=int)
+    # bert 输入，处理json后的二进制数据
     parser.add_argument('-dataset', default='bert_data/gonggao', type=str)
 
     bert_base_chinese = 'bert-base-chinese/'
