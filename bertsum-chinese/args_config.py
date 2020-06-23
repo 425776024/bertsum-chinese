@@ -72,6 +72,8 @@ parser.add_argument('-seed', default=666, type=int)
 
 # 在test的时候有用，告诉加载哪个保存的step模型进行预测
 parser.add_argument("-test_from", default='')
+
+# 训练制定起始模型，没有这个，请设置为空 :'' ,有的话会基于这个模型增量训练
 parser.add_argument("-train_from", default='models/bert_classifier/model_step_20142.pt')
 
 # 必须：预训练的pytorch 的bert-base-chinese模型路径
