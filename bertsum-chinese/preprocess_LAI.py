@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # 处理json数据集名称，比如json_data/LCSTS.train.1.json，需要指定为LCSTS
     parser.add_argument('-dataset', default='LCSTS', type=str)
     # 模型输入训练，保存
-    parser.add_argument("-save_path", default='train_data')
+    parser.add_argument("-save_path", default='bert_data')
 
     ###change from 2000 to 16000
     parser.add_argument("-shard_size", default=16000, type=int)
