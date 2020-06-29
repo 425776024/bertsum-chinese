@@ -34,10 +34,10 @@ if __name__ == '__main__':
     parser.add_argument('-log_file', default='logs/preprocess.log')
 
     parser.add_argument('-n_cpus', default=4, type=int)
-    # bert 输入，处理json后的二进制数据
-    parser.add_argument('-dataset', default='bert_data/gonggao', type=str)
+    # bert 输入，处理json后的二进制数据，比如LCSTS.train.1.json，需要指定为bert_data/LCSTS
+    parser.add_argument('-dataset', default='bert_data/LCSTS', type=str)
 
-    bert_base_chinese = 'bert-base-chinese/'
+    bert_base_chinese = '/Users/jiang/Documents/bert/bert-base-chinese'
     parser.add_argument("-bert_base_chinese", type=str, default=bert_base_chinese)
 
     args = parser.parse_args()
