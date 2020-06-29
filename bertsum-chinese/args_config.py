@@ -34,7 +34,7 @@ parser.add_argument("-temp_dir", default='temp')
 bert_mode_json_path = os.path.join(bert_base_chinese, 'config.json')
 parser.add_argument("-bert_config_path", default=bert_mode_json_path)
 
-# 这里的batch size 不一样，服务器上3000+-，本地测试60
+
 parser.add_argument("-batch_size", default=3000, type=int)
 
 parser.add_argument("-use_interval", type=str2bool, nargs='?', const=True, default=True)
