@@ -13,8 +13,10 @@ def do_format_to_bert(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    # json数据
+    # json数据目录
     parser.add_argument("-raw_path", default='json_data')
+    # 处理json数据集名称，比如json_data/LCSTS.train.1.json，需要指定为LCSTS
+    parser.add_argument('-dataset', default='LCSTS', type=str)
     # 模型输入训练，保存
     parser.add_argument("-save_path", default='train_data')
 
@@ -34,8 +36,6 @@ if __name__ == '__main__':
     parser.add_argument('-log_file', default='logs/preprocess.log')
 
     parser.add_argument('-n_cpus', default=4, type=int)
-    # bert 输入，处理json后的二进制数据，比如LCSTS.train.1.json，需要指定为LCSTS
-    parser.add_argument('-dataset', default='LCSTS', type=str)
 
     bert_base_chinese = '/Users/jiang/Documents/bert/bert-base-chinese'
     parser.add_argument("-bert_base_chinese", type=str, default=bert_base_chinese)
