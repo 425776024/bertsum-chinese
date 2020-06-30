@@ -48,7 +48,7 @@ class Trainer(object):
                     reduce_counter += 1
                     # 训练
                     loss = self._gradient_accumulation(true_batchs)
-                    if step % 100 == 0: print('step:', step, 'loss:', loss.cpu().detach().numpy())
+                    if step % 2 == 0: print('step:', step, 'loss:', loss.cpu().detach().numpy())
                     true_batchs = []
                     accum = 0
                     if step % self.save_checkpoint_steps == 0:

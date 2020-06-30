@@ -34,7 +34,7 @@ parser.add_argument("-temp_dir", default='temp')
 bert_mode_json_path = os.path.join(bert_base_chinese, 'config.json')
 parser.add_argument("-bert_config_path", default=bert_mode_json_path)
 
-parser.add_argument("-batch_size", default=3000, type=int)
+parser.add_argument("-batch_size", default=600, type=int)
 
 parser.add_argument("-use_interval", type=str2bool, nargs='?', const=True, default=True)
 parser.add_argument("-hidden_size", default=128, type=int)
@@ -73,7 +73,7 @@ parser.add_argument('-seed', default=666, type=int)
 parser.add_argument("-test_from", default='')
 
 # 训练制定起始模型，没有这个，请设置为空 :'' ,有的话会基于这个模型增量训练
-parser.add_argument("-train_from", default='models/bert_classifier/model_step_20142.pt')
+parser.add_argument("-train_from", default='')
 
 # 必须：预训练的pytorch 的bert-base-chinese模型路径
 
