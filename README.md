@@ -1,4 +1,4 @@
-# BERTSUM中文摘要抽取代码（魔改）
+# BERTSUM中文摘要抽取代码
 
 **搬砖不易，欢迎star**
 - bert-chinese-web//web小接口，可以浏览器中展示
