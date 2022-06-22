@@ -1,4 +1,4 @@
-numpy==1.17.2
+numpy==1.22.0
 emoji==0.5.4
 multiprocess==0.70.9
 pytorch_pretrained_bert==0.6.2
